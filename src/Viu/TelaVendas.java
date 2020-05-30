@@ -52,6 +52,7 @@ public class TelaVendas extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,9 +94,14 @@ public class TelaVendas extends javax.swing.JFrame {
 
             },
             new String [] {
-                ""
+                "Produto", "Quantidade", "Valor"
             }
         ));
+        jTprodutosVendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTprodutosVendasMouseClicked(evt);
+            }
+        });
         jTprodutosVendas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTprodutosVendasKeyReleased(evt);
@@ -123,6 +129,13 @@ public class TelaVendas extends javax.swing.JFrame {
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Finalizar Compra");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
             }
         });
 
@@ -156,9 +169,10 @@ public class TelaVendas extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5)))
+                            .addComponent(jButton6))
+                        .addComponent(jButton5))
                     .addComponent(jLabel4))
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(0, 70, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,10 +202,14 @@ public class TelaVendas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4))
-                .addGap(81, 81, 81))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton6)))
+                .addGap(17, 17, 17)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -204,7 +222,7 @@ public class TelaVendas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 25, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,7 +234,7 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+   
         
     if(jTprodutosVendas.getSelectedRow() != -1){
     DefaultTableModel dtmProdutos = (DefaultTableModel) jTprodutosVendas.getModel();
@@ -259,6 +277,28 @@ public class TelaVendas extends javax.swing.JFrame {
            txt_desc.setText(jTprodutosVendas.getValueAt(jTprodutosVendas.getSelectedRow(), 0).toString());
     }//GEN-LAST:event_jTprodutosVendasKeyReleased
 
+    private void jTprodutosVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTprodutosVendasMouseClicked
+        // TODO add your handling code here:
+        if(jTprodutosVendas.getSelectedRow()!=-1){
+            txt_desc.setText(jTprodutosVendas.getValueAt(jTprodutosVendas.getSelectedRow(), 0).toString());
+            txt_qtd.setText(jTprodutosVendas.getValueAt(jTprodutosVendas.getSelectedRow(), 1).toString());
+        
+        }
+    }//GEN-LAST:event_jTprodutosVendasMouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+          DefaultTableModel dtmProdutos = (DefaultTableModel) jTprodutosVendas.getModel();
+        Object[] Dados = {txt_desc.getText(), txt_qtd.getText()};
+        dtmProdutos.addRow(Dados);
+        
+          Validador.ValidarNumeros(txt_qtd);
+          
+          if(txt_desc.getText().trim().equals("")){
+          JOptionPane.showMessageDialog(this," Digite o nome do produto ");
+      }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -300,6 +340,7 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
