@@ -84,12 +84,12 @@ public class TelaExcluiCliente extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(btnNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNovo1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAlterar1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAlterar1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExcluir1)
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -198,7 +198,7 @@ public class TelaExcluiCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlterar1ActionPerformed
 
     private void btnNovo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovo1ActionPerformed
-        CadastrarCliente telaCadastro = new CadastrarCliente();
+        TelaCadastroCliente telaCadastro = new TelaCadastroCliente();
         telaCadastro.setVisible(true);
 
     }//GEN-LAST:event_btnNovo1ActionPerformed
